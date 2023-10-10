@@ -2,16 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 base_url = 'https://github.com'
 
-def scrape_topic_repositories(topic, path=None):
-    """Get the top repositories for a topic and write them to a CSV file"""
-    if path is None:
-        path = topic + '.csv'
-    topic_page_doc = get_topic_page(topic)
-    topic_repositories = get_top_repositories(topic_page_doc)
-    write_csv(topic_repositories, path)
-    print('Top repositories for topic "{}" written to file "{}"'.format(topic, path))
-    return path
-
 def get_top_repositories(doc):
     """Parse the top repositories for a topic given a Beautiful Soup document"""
     article_tags = doc.find_all('article', class_='border rounded color-shadow-small color-bg-subtle my-4')
@@ -54,3 +44,16 @@ def write_csv(items, path):
             for header in headers:
                 values.append(str(item.get(header, "")))
             f.write(','.join(values) + "\n")
+def scrape_topic_repositories(topic, path=None):
+    """Get the top repositories for a topic and write them to a CSV file"""
+    if path is None:
+        path = topic + '.csv'
+    topic_page_doc = get_topic_page(topic)
+    topic_repositories = get_top_repositories(topic_page_doc)
+    write_csv(topic_repositories, path)
+    print('Top repositories for topic "{}" written to file "{}"'.format(topic, path))
+    return path
+
+if __maian__ ="__maian__ ":
+    topic= #set your topic
+    scrape_topic_repositories(topic, path=None):
